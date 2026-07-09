@@ -24,28 +24,8 @@ The open standard for connecting AI applications to tools, data and prompts — 
 MCP follows a client–server model. A **host** application runs one **client** per connected **server**, each a stateful 1:1 session. Servers expose capabilities without needing to know anything about the host.
 
 ```
-┌─────────────────────────────┐        ┌──────────────────────────┐        ┌───────────────────────┐
-│ Host application             │        │ MCP server                │        │ Backend systems         │
-│ Claude Desktop · IDE · agent │        │ exposes capabilities,     │        │ the real system of      │
-│                               │        │ not policy                │        │ record                  │
-│  ┌─────────────────────────┐ │        │  ┌──────────────────────┐ │        │  ┌────────────────────┐ │
-│  │ Language model           │ │        │  │ Tools                 │ │        │  │ Email service       │ │
-│  │ decides which tool to    │ │        │  │ executable actions     │ │        │  └────────────────────┘ │
-│  │ call, with what args     │ │        │  └──────────────────────┘ │        │  ┌────────────────────┐ │
-│  └─────────────────────────┘ │        │  ┌──────────────────────┐ │        │  │ Database            │ │
-│  ┌─────────────────────────┐ │  JSON  │  │ Resources              │ │ native │  └────────────────────┘ │
-│  │ MCP client A              │─┼─RPC──▶│  │ read-only context      │ │ calls  │  ┌────────────────────┐ │
-│  │ 1:1 session · fs server  │ │  2.0   │  └──────────────────────┘ │───────▶│  │ Report generator    │ │
-│  └─────────────────────────┘ │        │  ┌──────────────────────┐ │        │  └────────────────────┘ │
-│  ┌─────────────────────────┐ │        │  │ Prompts                │ │        │                          │
-│  │ MCP client B               │─┘        │  │ reusable templates     │ │        │ MCP never touches these  │
-│  │ 1:1 session · github svr │ │        │  └──────────────────────┘ │        │ directly — the server     │
-│  └─────────────────────────┘ │        │                            │        │ owns auth, sandboxing &   │
-│ One client instance per       │        │ Declares capabilities once │        │ rate limits.               │
-│ server connection — sessions  │        │ during initialize — host   │        │                          │
-│ never share state.            │        │ trusts nothing it hasn't   │        │                          │
-│                                │        │ advertised.                │        │                          │
-└─────────────────────────────┘        └──────────────────────────┘        └───────────────────────┘
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/2a3fde43-5f7c-462c-b831-40b17a8aeba4" />
+
 ```
 
 | Role | Color-coded as | Description |
