@@ -23,10 +23,8 @@ The open standard for connecting AI applications to tools, data and prompts — 
 
 MCP follows a client–server model. A **host** application runs one **client** per connected **server**, each a stateful 1:1 session. Servers expose capabilities without needing to know anything about the host.
 
-```
 <img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/2a3fde43-5f7c-462c-b831-40b17a8aeba4" />
 
-```
 
 | Role | Color-coded as | Description |
 |---|---|---|
